@@ -16,7 +16,7 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring-base.xml,/WEB-INF/mvc-dispatcher-servlet.xml,/WEB-INF/redis-context.xml,/WEB-INF/spring-hibernate.xml</param-value>
+		<param-value>/WEB-INF/spring-base.xml,/WEB-INF/mvc-dispatcher-servlet.xml,/WEB-INF/spring-redis-context.xml,/WEB-INF/spring-hibernate.xml</param-value>
 	</context-param>
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
