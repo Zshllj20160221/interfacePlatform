@@ -1,6 +1,7 @@
 package interfacePlatform.controller;
 
 import interfacePlatform.dto.Person;
+import interfacePlatform.model.UserModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import interfacePlatform.service.IUserService;
 import interfacePlatform.core.dict.ResponseCode;
 import interfacePlatform.dto.AjaxResult;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author zsh
@@ -25,24 +27,15 @@ public class UserController {
     
     @Autowired
     private IUserService userService;
-//
-//    @RequestMapping(value="getAllUser",method = RequestMethod.GET)
-//    public void getAllUser(HttpServletRequest request){
-//        logger.debug("");
-//        request.setAttribute("userList",userService.getAllUserModel());
-//        //这里的return相当于struts2中的execute中的返回值
-//        logger.debug("userService.getAllUserModel():"+userService.getAllUserModel().size());
-//    }
-//
-//    @RequestMapping(value="getAllUserWithIdAuto",method = RequestMethod.GET)
-//    @ResponseBody
-//    public AjaxResult getAllUserUserModelWithIdAuto(HttpServletRequest request){
-//        logger.debug("");
-//        request.setAttribute("userList",userService.getAllUserModelWithIdAuto());
-//        //这里的return相当于struts2中的execute中的返回值
-//        logger.debug("userService.getAllUserModel():"+userService.getAllUserModelWithIdAuto().size());
-//        return new AjaxResult(ResponseCode.success.getCode(),ResponseCode.success.getMsg(),null, null);
-//    }
+
+    @RequestMapping(value="getAllUser",method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResult getAllUser(HttpServletRequest request){
+        List<UserModel> list = userService.getAllUserModel();
+        if (list!=null) return new AjaxResult(ResponseCode.success.getCode(),ResponseCode.success.getMsg(),request.getRequestURI(),list.size());
+        return new AjaxResult(ResponseCode.success.getCode(),ResponseCode.success.getMsg(),request.getRequestURI(),0);
+    }
+
 //
 //    @RequestMapping(value="/getUser",method = RequestMethod.GET)
 //    public void getUser(String id,HttpServletRequest request){
@@ -50,12 +43,12 @@ public class UserController {
 //        request.setAttribute("user", userService.getUserModel(id));
 //
 //    }
-//    @RequestMapping(value="/addUser",method = RequestMethod.GET)
-//    public void addUser(UserModel user,HttpServletRequest request){
-//        user.setAge("18");
-//        System.out.println("user:"+user.getAge()+user.getId());
-//        userService.addUserModel(user);
-//    }
+    @RequestMapping(value="/addUser",method = RequestMethod.GET)
+    public void addUser(UserModel user,HttpServletRequest request){
+        user.setAge("18");
+        System.out.println("user:"+user.getAge()+user.getId());
+        userService.addUserModel(user);
+    }
 //    @RequestMapping(value="/addUserWithIdAuto",method = RequestMethod.GET)
 //    public void addUser(UserModelWithIdAuto user,HttpServletRequest request){
 //        user.setAge("18");
