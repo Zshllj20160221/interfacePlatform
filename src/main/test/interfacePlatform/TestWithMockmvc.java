@@ -47,6 +47,7 @@ public class TestWithMockmvc {
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
+
 //    @Test
 //    public void getAllData() throws Exception {
 //        mockMvc.perform(MockMvcRequestBuilders.get("/user/getPerson"))
@@ -199,4 +200,5 @@ public class TestWithMockmvc {
         JsonAssert.with(json).assertThat("$.store.book[?(@.category == 'x')]", JsonAssert.emptyCollection());
 
     }
+
 }

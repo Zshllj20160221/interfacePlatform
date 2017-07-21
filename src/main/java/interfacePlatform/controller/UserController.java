@@ -43,11 +43,13 @@ public class UserController {
 //        request.setAttribute("user", userService.getUserModel(id));
 //
 //    }
+    //http://localhost:8080/interfacePlatform/user/addUser?age=22&userName=olooo
     @RequestMapping(value="/addUser",method = RequestMethod.GET)
-    public void addUser(UserModel user,HttpServletRequest request){
-        user.setAge("18");
-        System.out.println("user:"+user.getAge()+user.getId());
+    @ResponseBody
+    public AjaxResult addUser(UserModel user,HttpServletRequest request){
         userService.addUserModel(user);
+        return new AjaxResult(ResponseCode.success.getCode(),ResponseCode.success.getMsg(),request.getRequestURI(),"");
+
     }
 //    @RequestMapping(value="/addUserWithIdAuto",method = RequestMethod.GET)
 //    public void addUser(UserModelWithIdAuto user,HttpServletRequest request){
@@ -94,6 +96,7 @@ public class UserController {
     public Person getUrl(Person person){
         return person;
     }
+
 }
 
 
