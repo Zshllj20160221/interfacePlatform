@@ -91,9 +91,7 @@ public class UserController {
     //http://localhost:8080/user/getPerson
     @RequestMapping(value = "getPerson",method = RequestMethod.GET)
     @ResponseBody
-    public Person getUrl(){
-        Person person = new Person();
-        person.setAge(18);
+    public Person getUrl(Person person){
         return person;
     }
 }
